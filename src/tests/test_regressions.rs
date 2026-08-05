@@ -291,6 +291,7 @@ fn test_set_personal_cap_below_lifetime_contribution_rejected() {
     });
 
     token_admin.mint(&contributor, &10_000);
+    client.verify_campaign(&campaign_id);
     client.contribute(&campaign_id, &contributor, &1000);
     assert_eq!(
         client.get_lifetime_contribution(&campaign_id, &contributor),
@@ -325,6 +326,7 @@ fn test_set_personal_cap_equal_lifetime_blocks_further_contributions() {
     });
 
     token_admin.mint(&contributor, &10_000);
+    client.verify_campaign(&campaign_id);
     client.contribute(&campaign_id, &contributor, &1000);
 
     let res = client.try_set_personal_cap(&campaign_id, &contributor, &1000);
